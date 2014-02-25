@@ -26,7 +26,7 @@ var VimeoDialog = {
         
         if (code === "") { tinyMCEPopup.close(); return; }
         tinyMCEPopup.editor.execCommand('mceInsertContent', false,
-            '<iframe width="500" height="281" frameborder="0" allowfullscreen="" src="//player.vimeo.com/video'+ code +'?badge=0"></iframe>');
+            '<div id="video-tag"><iframe width="500" height="281" frameborder="0" allowfullscreen="" src="//player.vimeo.com/video'+ code +'?badge=0"></iframe></div>');
         tinyMCEPopup.close();
     }
 };
