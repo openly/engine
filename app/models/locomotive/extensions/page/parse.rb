@@ -25,7 +25,29 @@ module Locomotive
           scope :pages, lambda { |domain| { any_in: { domains: [*domain] } } }
         end
 
+        def raw_template
+          parent = self.parent;
+          parentPath = '';
+          while not (parent.nil?) and parent.slug != 'index'
+            parentPath += parent.slug + '/'
+            parent = parent.parent
+          end
+          raw_template = "{% extends parent %}"
+          templateFile = CC_TEMPLATE_DIR + "/pages/#{parentPath}#{self.slug}.liquid"
+
+          if File.exists?(templateFile)
+            print "Reading from: " + CC_TEMPLATE_DIR + "/pages/#{parentPath}#{self.slug}.liquid\n"
+            raw_template = File.read(CC_TEMPLATE_DIR + "/pages/#{parentPath}#{self.slug}.liquid");
+          end
+          return raw_template
+        end
+
+        def raw_template_changed?
+          true
+        end
+
         def template
+          self.force_serialize_template
           @template ||= Marshal.load(self.serialized_template.to_s) rescue nil
         end
 
