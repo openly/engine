@@ -18,7 +18,7 @@ var YoutubeDialog = {
         code = (regexRes === null) ? url : regexRes[1];
         if (code === "") { tinyMCEPopup.close(); return; }
         tinyMCEPopup.editor.execCommand('mceInsertContent', false,
-            '<div id="video-tag"><iframe width="420" height="315" frameborder="0" allowfullscreen="true" src="//www.youtube.com/embed/'+ code + '"> </iframe></div>');
+            '<iframe width="420" height="315" frameborder="0" allowfullscreen="true" src="//www.youtube.com/embed/'+ code + '"> </iframe>');
         tinyMCEPopup.close();
     }
 };
