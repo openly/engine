@@ -28,16 +28,20 @@ module Locomotive
         def raw_template
           parent = self.parent;
           parentPath = '';
+          
           while not (parent.nil?) and parent.slug != 'index'
-            parentPath += parent.slug + '/'
+            parentPath = parent.slug + '/' + parentPath
             parent = parent.parent
           end
+
           raw_template = "{% extends parent %}"
           templateFile = CC_TEMPLATE_DIR + "/pages/#{parentPath}#{self.slug}.liquid"
 
           if File.exists?(templateFile)
-            print "Reading from: " + CC_TEMPLATE_DIR + "/pages/#{parentPath}#{self.slug}.liquid\n"
-            raw_template = File.read(CC_TEMPLATE_DIR + "/pages/#{parentPath}#{self.slug}.liquid");
+            # print "Reading from: " + CC_TEMPLATE_DIR + "#{templateFile}\n"
+            raw_template = File.read(CC_TEMPLATE_DIR + templateFile);
+          else
+            print "Could not read from: " + CC_TEMPLATE_DIR + "#{templateFile}\n"
           end
           return raw_template
         end
