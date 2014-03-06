@@ -35,13 +35,13 @@ module Locomotive
           end
 
           raw_template = "{% extends parent %}"
-          templateFile = CC_TEMPLATE_DIR + "/pages/#{parentPath}#{self.slug}.liquid"
+          templateFile = CC_TEMPLATE_DIR + "/#{parentPath}#{self.slug}.liquid"
 
           if File.exists?(templateFile)
-            # print "Reading from: " + CC_TEMPLATE_DIR + "#{templateFile}\n"
-            raw_template = File.read(CC_TEMPLATE_DIR + templateFile);
+            # print "Reading from: #{templateFile}\n"
+            raw_template = File.read(templateFile);
           else
-            print "Could not read from: " + CC_TEMPLATE_DIR + "#{templateFile}\n"
+            print "Could not read from: #{templateFile}\n"
           end
           return raw_template
         end
