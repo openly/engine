@@ -7,7 +7,7 @@
   %p
     %strong= @entry.name
     %br
-    %a{:href => @entry.email}= @entry.email 
+    %a{:href => "mailto:#{@entry.email}"}= @entry.email 
 -else
   %p= t('.title', name: @account.name, domain: @domain, date: I18n.l(Time.zone.now), locale: @account.locale).html_safe
 
