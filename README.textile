@@ -1,3 +1,11 @@
+h2. Changes from Openly
+This fork has some custom changes made by openly.
+
+* Filesystem based templates (Generally templates are in db in the engine)
+* Custom email for a customer message content entry.
+
+These changes are very specific to a particular build and cannot be used in any other project without suitable modifications.
+
 h1. LocomotiveCMS
 
 "!https://secure.travis-ci.org/locomotivecms/engine.png!":http://travis-ci.org/locomotivecms/engine
