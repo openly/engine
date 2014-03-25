@@ -1,7 +1,7 @@
 module Locomotive
   class Notifications < ActionMailer::Base
 
-    default from: Locomotive.config.mailer_sender
+    default from: "Currency Cloud Webmaster<webmaster@thecurrencycloud.com>"
 
     def new_content_entry(account, entry)
       @account, @entry, @type = account, entry, entry.content_type
