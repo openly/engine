@@ -96,6 +96,7 @@ Rails.application.routes.draw do
     end
   end
 
+  match '/api.proxy'  => 'api#proxy', format: 'json'
   # sitemap
   match '/sitemap.xml'  => 'locomotive/public/sitemaps#show', format: 'xml'
 
