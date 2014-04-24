@@ -17,6 +17,9 @@ class ApiController < ApplicationController
       uri = uri + "?#{query}" 
     end
 
+    print "Proxying for URL: #{uri}\n";
+    print "Post Parameters: #{params[:post]}\n\n"
+
     postParams = params[:post]
 
     begin
