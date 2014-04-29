@@ -24,17 +24,19 @@ class ApiController < ApplicationController
 
     begin
       case params[:method]
-      when "get"
-        res = RestClient.get(uri);
-      when "post"
-        res = RestClient.post(uri, params[:post]);
-      when "delete"
-        res = RestClient.delete(uri);
-      when "put"           
-        res = RestClient.get(uri, params[:post]);
+        when "get"
+          res = RestClient.get(uri);
+          break;
+        when "post"
+          res = RestClient.post(uri, params[:post]);
+          break;
+        when "delete"
+          res = RestClient.delete(uri);
+          break;
+        when "put"           
+          res = RestClient.get(uri, params[:post]);
+          break;
       end
-
-      res = RestClient::get(host + path)
     rescue => e
       res = e.response
     end
