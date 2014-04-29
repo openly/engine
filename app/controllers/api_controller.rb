@@ -38,6 +38,7 @@ class ApiController < ApplicationController
     rescue => e
       res = e.response
     end
+    print "Response: #{res}"
     render inline: res
   end
 end
