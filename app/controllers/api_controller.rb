@@ -19,16 +19,21 @@ class ApiController < ApplicationController
 
     postParams = params[:post]
 
+    headers = {}
+    if(prams[:headers] != nil){
+      headers = params[:headers];
+    }
+
     begin
       case params[:method]
         when "get"
-          res = RestClient.get(uri, params[:headers]);
+          res = RestClient.get(uri, headers);
         when "post"
-          res = RestClient.post(uri, params[:post], params[:headers]);
+          res = RestClient.post(uri, params[:post], headers);
         when "delete"
-          res = RestClient.delete(uri, params[:headers]);
+          res = RestClient.delete(uri, headers);
         when "put"           
-          res = RestClient.get(uri, params[:post], params[:headers]);
+          res = RestClient.get(uri, params[:post], headers);
       end
     rescue => e
       res = e.response
