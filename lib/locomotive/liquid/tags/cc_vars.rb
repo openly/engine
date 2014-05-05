@@ -14,6 +14,7 @@ module Locomotive
         class CCAPIPHostTag < ::Liquid::Tag
 
           def render(context)
+            print "Coming here"
             ::API_PROXY_HOSTS['cc']
           end
 
