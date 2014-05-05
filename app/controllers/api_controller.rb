@@ -2,7 +2,7 @@ require "rest_client"
 class ApiController < ApplicationController
   def proxy
     hosts = {}
-    hosts["cc"]= "http://api.uat1.ccycloud.com"
+    hosts["cc"]= "http://localhost"
 
 
     host = hosts[params[:host]];
@@ -17,17 +17,17 @@ class ApiController < ApplicationController
       uri = uri + "?#{query}" 
     end
 
-    print "Proxying for URL: #{uri}\n";
+    
     print "Post Parameters: #{params[:post]}\n\n"
-
+    
     postParams = params[:post]
 
     begin
       case params[:method]
         when "get"
-          res = RestClient.get(uri);
+          res = RestClient.get(uri,params[:headers]);
         when "post"
-          res = RestClient.post(uri, params[:post]);
+          res = RestClient.post(uri, params[:post],params[:headers]);
         when "delete"
           res = RestClient.delete(uri);
         when "put"           
