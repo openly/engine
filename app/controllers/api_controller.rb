@@ -1,14 +1,11 @@
 require "rest_client"
 class ApiController < ApplicationController
   def proxy
-    hosts = {}
-    hosts["cc"]= "http://localhost"
-
-
-    host = hosts[params[:host]];
+    host = API_PROXY_HOSTS[params[:host]];
     path = params[:path] or "";
+    
     if(params[:query] != nil)
-      query = URI.encode_www_form(params[:query])\
+      query = URI.encode_www_form(params[:query])
     end
 
     uri = host + path
@@ -17,21 +14,21 @@ class ApiController < ApplicationController
       uri = uri + "?#{query}" 
     end
 
-    
+    print "Proxying for URL: #{uri}\n";
     print "Post Parameters: #{params[:post]}\n\n"
-    
+
     postParams = params[:post]
 
     begin
       case params[:method]
         when "get"
-          res = RestClient.get(uri,params[:headers]);
+          res = RestClient.get(uri, params[:headers]);
         when "post"
-          res = RestClient.post(uri, params[:post],params[:headers]);
+          res = RestClient.post(uri, params[:post], params[:headers]);
         when "delete"
-          res = RestClient.delete(uri);
+          res = RestClient.delete(uri, params[:headers]);
         when "put"           
-          res = RestClient.get(uri, params[:post]);
+          res = RestClient.get(uri, params[:post], params[:headers]);
       end
     rescue => e
       res = e.response
