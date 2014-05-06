@@ -20,9 +20,10 @@ class ApiController < ApplicationController
     postParams = params[:post]
 
     headers = {}
-    if(prams[:headers] != nil){
-      headers = params[:headers];
-    }
+
+    if(params[:headers] != nil)
+      headers = params[:headers]
+    end
 
     begin
       case params[:method]
