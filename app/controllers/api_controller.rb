@@ -8,7 +8,7 @@ class ApiController < ApplicationController
       query = URI.encode_www_form(params[:query])
     end
 
-    uri = host + path
+    uri = host + URI.unescape(path)
 
     if(query != nil)
       uri = uri + "?#{query}" 
