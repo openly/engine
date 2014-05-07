@@ -4,6 +4,7 @@ module Locomotive
     default from: "Currency Cloud Webmaster<webmaster@thecurrencycloud.com>"
 
     def new_content_entry(account, entry)
+
       @account, @entry, @type = account, entry, entry.content_type
 
       if Locomotive.config.multi_sites_or_manage_domains?
@@ -11,11 +12,6 @@ module Locomotive
       else
         @domain = ActionMailer::Base.default_url_options[:host] || 'localhost'
       end
-
-      subject = t('locomotive.notifications.new_content_entry.subject', domain: @domain, type: @type.name, locale: account.locale)
-      to = account.email
-
-
       if @type.slug == 'customer_messages'
         subject = "#{@entry.name} has left a message at currency cloud portal(#{entry.department} department)."
         case @entry.department
@@ -30,10 +26,12 @@ module Locomotive
         when 'Tech Team'
           to = TECH_DEPT_EMAIL
         end
+        mail subject: subject, to: to
+      elsif @type.slug == 'contact_submissions'
+        subject = 'Message from Currency cloud development center'
+        to = account.email
+        mail subject: subject, to: to
       end
-
-      mail subject: subject, to: to
     end
   end
-
 end
