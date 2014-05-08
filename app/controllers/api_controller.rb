@@ -15,7 +15,7 @@ class ApiController < ApplicationController
     end
 
     print "Proxying for URL: #{uri}\n";
-    print "Post Parameters: #{params[:post]}\n\n"
+    print "Post Parameters: #{params[:post]}\n"
 
     postParams = params[:post]
 
@@ -39,7 +39,7 @@ class ApiController < ApplicationController
     rescue => e
       res = e.response
     end
-    print "Response: #{res}"
+    print "Response: #{res}\n\n"
     render inline: res
   end
 end
