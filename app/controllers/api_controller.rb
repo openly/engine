@@ -4,7 +4,7 @@ class ApiController < ApplicationController
     host = API_PROXY_HOSTS[params[:host]];
     path = params[:path] or "";
     
-    if(params[:query] != nil)
+    if(params[:query] != nil and params[:query] != "")
       query = URI.encode_www_form(params[:query])
     end
 
