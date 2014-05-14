@@ -29,13 +29,25 @@ module Locomotive
           parent = self.parent;
           parentPath = '';
           
+          if not self.slug? or self.slug == ""
+            return "Blank Page"
+          end
+
           while not (parent.nil?) and parent.slug != 'index'
             parentPath = parent.slug + '/' + parentPath
             parent = parent.parent
           end
 
           raw_template = "{% extends parent %}"
-          templateFile = CC_TEMPLATE_DIR + "/#{parentPath}#{self.slug}.liquid"
+          if self.parent.nil? 
+            raw_template = "No Template"
+          end
+
+          if(self.site?)
+            templateFile = CC_TEMPLATE_DIR[self.site.subdomain] + "/#{parentPath}#{self.slug}.liquid"
+          else
+            templateFile = CC_TEMPLATE_DIR["www"] + "/#{parentPath}#{self.slug}.liquid"
+          end
 
           if File.exists?(templateFile)
             # print "Reading from: #{templateFile}\n"
