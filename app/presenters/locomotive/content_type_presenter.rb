@@ -71,9 +71,11 @@ module Locomotive
     end
 
     def public_submission_account_emails=(emails)
-      self.__source.public_submission_accounts = emails.collect do |email|
-        Locomotive::Account.where(email: email).first
-      end.compact.collect(&:id)
+      if emails
+        self.__source.public_submission_accounts = emails.collect do |email|
+          Locomotive::Account.where(email: email).first
+        end.compact.collect(&:id)
+      end
     end
 
     ## methods ##
