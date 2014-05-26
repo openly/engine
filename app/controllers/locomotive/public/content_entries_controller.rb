@@ -13,12 +13,30 @@ module Locomotive
       respond_to :html, :json
 
       def create
-        @entry = @content_type.entries.safe_create(params[:entry] || params[:content])
+        if (params.has_key?(:recaptcha_challenge_field))
+          if(params[:recaptcha_response_field].empty?)
+            captchaRes = {'status' => false, 'error' => 'Captcha Field cannot be blank'}
+          else
+            captchaRes = Locomotive::Recaptcha::Verify.verify_recaptcha(request, params)
+          end
+        else 
+          captchaRes = {'status' => true}
+        end
+
+        if (captchaRes['status'] == true) 
+          @entry = @content_type.entries.safe_create(params[:entry] || params[:content])
+        else 
+          params[:content][:subject] = ""
+          @entry = @content_type.entries.safe_create(params[:entry] || params[:content])
+          @entry.errors.clear
+          @entry.errors[:captcha] << captchaRes['error']
+        end
 
         respond_with @entry, {
           location:   self.callback_url,
           responder:  Locomotive::ActionController::PublicResponder
         }
+
       end
 
       protected
