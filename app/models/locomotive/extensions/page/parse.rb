@@ -43,11 +43,11 @@ module Locomotive
             raw_template = "No Template"
           end
 
-          if(self.site? && defined? self.site.subdomain)
+          #if(self.site? && defined? self.site.subdomain)
               templateFile = CC_TEMPLATE_DIR[self.site.subdomain] + "/#{parentPath}#{self.slug}.liquid"
-          else
-            templateFile = CC_TEMPLATE_DIR + "/#{parentPath}#{self.slug}.liquid"
-          end
+          #else
+          #  templateFile = CC_TEMPLATE_DIR + "/#{parentPath}#{self.slug}.liquid"
+          #end
 
           if File.exists?(templateFile)
             # print "Reading from: #{templateFile}\n"
