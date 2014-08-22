@@ -34,7 +34,7 @@ module Locomotive
 
     collection  :editable_elements, presenter: EditableElementPresenter
 
-    properties  :seo_title, :meta_keywords, :meta_description, required: false
+    properties  :seo_title, :meta_keywords, :meta_description, :xml_priority, :change_frequency, required: false
 
     ## other getters / setters ##
 

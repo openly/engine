@@ -54,6 +54,18 @@ module Locomotive
       ]
     end
 
+    def options_for_page_change_frequency
+      [
+        [t('.change_frequency.always'), 'always'],
+        [t('.change_frequency.hourly'), 'hourly'],
+        [t('.change_frequency.daily'), 'daily'],
+        [t('.change_frequency.weekly'), 'weekly'],
+        [t('.change_frequency.monthly'), 'monthly'],
+        [t('.change_frequency.yearly'), 'yearly'],
+        [t('.change_frequency.never'), 'never']
+      ]
+    end
+    
     def options_for_page_response_type
       [
         ['HTML', 'text/html'],

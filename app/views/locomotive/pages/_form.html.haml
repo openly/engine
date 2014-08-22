@@ -23,6 +23,10 @@
   = f.input :meta_keywords
 
   = f.input :meta_description
+  
+  = f.input :xml_priority
+
+  = f.input :change_frequency, as: :select, collection: options_for_page_change_frequency, include_blank: false, wrapper_html: { style: "#{'display: none' if @page.redirect?}" }
 
 = f.inputs name: :advanced_options, id: 'advanced-options', class: "inputs foldable #{'folded' if inputs_folded?(@page)}" do
 

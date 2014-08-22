@@ -8,6 +8,8 @@ module Locomotive
           field :seo_title,         type: String, localize: true
           field :meta_keywords,     type: String, localize: true
           field :meta_description,  type: String, localize: true
+          field :xml_priority,      type: String, localize: true
+          field :change_frequency,  default: 'never'
         end
 
       end # Seo

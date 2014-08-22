@@ -9,7 +9,7 @@ module Locomotive
 
     properties  :_position, :_visible, required: false
 
-    properties  :seo_title, :meta_keywords, :meta_description, required: false
+    properties  :seo_title, :meta_keywords, :meta_description, :xml_priority, :change_frequency, required: false
 
     with_options only_getter: true do |presenter|
       presenter.properties  :content_type_slug, :translated_in
